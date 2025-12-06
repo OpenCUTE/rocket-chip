@@ -124,9 +124,10 @@ trait HasCoreParameters extends HasTileParameters {
   if (usingVector) {
     require(isPow2(vLen), s"vLen ($vLen) must be a power of 2")
     require(eLen >= 32 && vLen % eLen == 0, s"eLen must divide vLen ($vLen) and be no less than 32")
-    require(eLen == 32 || eLen == 64)
-    require(vfLen <= eLen)
-    require(!coreParams.vfh || (vfLen >= 32 && coreParams.minFLen <= 16))
+    require(eLen == 32 || eLen == 64, s"eLen must be 32 or 64, got $eLen")
+    require(vfLen <= eLen, s"vfLen ($vfLen) must be less than or equal to eLen ($eLen)")
+    require(!coreParams.vfh || (vfLen >= 32 && coreParams.minFLen <= 16),
+      s"vfh requires vfLen ($vfLen) to be at least 32 and minFLen (${coreParams.minFLen}) to be at most 16")
   }
 
   if (coreParams.useVM) {

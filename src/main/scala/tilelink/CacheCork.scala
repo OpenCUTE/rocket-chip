@@ -19,7 +19,7 @@ import freechips.rocketchip.util.DataToAugmentedData
 
 case class TLCacheCorkParams(
   unsafe: Boolean = false,
-  sinkIds: Int = 8)
+  sinkIds: Int = 64)
 
 class TLCacheCork(params: TLCacheCorkParams = TLCacheCorkParams())(implicit p: Parameters) extends LazyModule
 {
@@ -187,7 +187,7 @@ object TLCacheCork
     val cork = LazyModule(new TLCacheCork(params))
     cork.node
   }
-  def apply(unsafe: Boolean = false, sinkIds: Int = 8)(implicit p: Parameters): TLNode =
+  def apply(unsafe: Boolean = false, sinkIds: Int = 64)(implicit p: Parameters): TLNode =
   {
     apply(TLCacheCorkParams(unsafe, sinkIds))
   }
