@@ -5,6 +5,8 @@
 
 #include <stdint.h>
 #include <sys/types.h>
+#include <stdio.h>
+#include <time.h>
 
 class remote_bitbang_t
 {
@@ -12,6 +14,9 @@ public:
   // Create a new server, listening for connections from localhost on the given
   // port.
   remote_bitbang_t(uint16_t port);
+
+  // Destructor
+  ~remote_bitbang_t();
 
   // Do a bit of work.
   void tick(unsigned char * jtag_tck,
@@ -37,6 +42,10 @@ public:
     
   int socket_fd;
   int client_fd;
+
+  // Timing measurement
+  uint64_t execute_count;
+  FILE* timing_log;
 
   static const ssize_t buf_size = 64 * 1024;
   char recv_buf[buf_size];

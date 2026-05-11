@@ -100,6 +100,15 @@ class TLFragmenter(val minSize: Int, val maxSize: Int, val alwaysMin: Boolean = 
         val managers  = manager.managers
         val beatBytes = manager.beatBytes
         val fifoId = managers(0).fifoId
+        if (!(fifoId.isDefined && managers.map(_.fifoId == fifoId).reduce(_ && _)))
+        {
+          println("fifoId.isDefined: " + fifoId.isDefined)
+          for (manager <- managers) {
+            println("Manager FIFO ID: " + manager.fifoId)
+            println("Manager: " + manager.name)
+            println("Manager Details: " + manager)
+          }
+        }
         require (fifoId.isDefined && managers.map(_.fifoId == fifoId).reduce(_ && _))
         require (!manager.anySupportAcquireB || !edgeOut.client.anySupportProbe,
           s"TLFragmenter (with parent $parent) can't fragment a caching client's requests into a cacheable region")

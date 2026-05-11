@@ -9,7 +9,7 @@ import freechips.rocketchip.devices.tilelink.{BuiltInDevices, HasBuiltInDevicePa
 import freechips.rocketchip.tilelink.{
   ReplicatedRegion, HasTLBusParams, HasRegionReplicatorParams, TLBusWrapper,
   TLBusWrapperInstantiationLike, RegionReplicator, TLXbar, TLInwardNode,
-  TLOutwardNode, ProbePicker, TLEdge, TLFIFOFixer
+  TLOutwardNode, ProbePicker, TLEdge, TLFIFOFixer,BankSystemHasher
 }
 import freechips.rocketchip.util.Location
 

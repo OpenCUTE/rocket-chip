@@ -233,7 +233,7 @@ package object util {
   implicit class IntToAugmentedInt(private val x: Int) extends AnyVal {
     // exact log2
     def log2: Int = {
-      require(isPow2(x))
+      require(isPow2(x), "log2 called on non-power-of-2 value,x=" + x)
       log2Ceil(x)
     }
   }

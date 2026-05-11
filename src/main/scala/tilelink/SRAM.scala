@@ -34,6 +34,8 @@ class TLRAM(
     val devOverride: Option[Device with DeviceRegName] = None
   )(implicit p: Parameters) extends DiplomaticSRAM(address, beatBytes, devName, dtsCompat, devOverride)
 {
+
+  println("Hello, There is A TLRAM Module, devName: " + devName.getOrElse("None") + ", address: " + address + ", beatBytes: " + beatBytes + ", ecc: " + ecc)
   val eccBytes = ecc.bytes
   val code = ecc.code
   require (eccBytes  >= 1 && isPow2(eccBytes))
